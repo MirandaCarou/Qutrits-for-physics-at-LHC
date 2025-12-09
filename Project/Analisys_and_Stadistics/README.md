@@ -1,10 +1,10 @@
-# Quantum Fidelity Statistical Analysis and Anomaly Detection
+# 🍄 Quantum fidelity statistical analysis and anomaly detection 
 
 This part contains code for **statistical analysis of quantum autoencoder outputs** (both qubit- and qutrit-based models) and evaluates their **anomaly detection performance**. The main objectives include analyzing fidelity distributions, computing divergences between datasets, and assessing separability using ROC-AUC metrics.
 
 ---
 
-## Data Loading
+## 🍃 Data loading
 
 The script loads **`.npz` files** containing results from multiple executions (usually 100 runs) of qubit and qutrit quantum models.  
 
@@ -19,7 +19,7 @@ These files store all experiment results for analysis.
 
 ---
 
-## Statistical Analysis
+## ✍🏻 Statistical analysis
 
 For each dataset and model, the script computes:
 
@@ -32,28 +32,28 @@ For each dataset and model, the script computes:
 
 ---
 
-## Anomaly Detection Metrics
+## ⚛️ Anomaly detection metrics
 
 - Converts fidelities into **anomaly scores**: `anomaly_score = 1 - fidelity`  
 - Calculates **ROC AUC** for each signal type against background to quantify how well the model separates signals from background
 
 ---
 
-## Aggregated Metrics
+## 🍂 Aggregated metrics
 
 - Computes **average AUC** and **average JSD** across multiple trials (typically 100 iterations)  
 - Stores results for **comparative analysis** across different quantum states and configurations (qubits vs qutrits, real vs simulated CMS data)
 
 ---
 
-## Model Variants Analyzed
+## 👾 Model variants analyzed
 
 ### Qubit-based Models
 
 - Trained on **real CMS data** (`qubitsReal`)  
 - Trained on **simulated CMS data** (`qubits`)  
 
-### Qutrit-based Models
+### 🫧 Qutrit-based Models
 
 - Trained on **real CMS data** (`qutritsReal`)  
 - Trained on **simulated CMS data** with different features:  
@@ -74,7 +74,7 @@ Finally, **average AUC** and **average JSD** across iterations are computed to s
 
 ---
 
-## Printing Results
+## 🖨️ Printing results
 
 The script includes routines to:
 
@@ -84,7 +84,7 @@ The script includes routines to:
 
 ---
 
-## Visualization
+## 🥸 Visualization
 
 The code supports plotting:
 
@@ -94,7 +94,7 @@ The code supports plotting:
 
 ---
 
-## Summary
+## ✨ Summary
 
 This workflow provides a **comprehensive analysis framework** for quantum autoencoder outputs:
 
