@@ -1,4 +1,4 @@
-# Qutrits for physics at LHC
+# Qutrits for physics at LHC ✨
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)
@@ -24,7 +24,7 @@ Each directory corresponds to a key stage of the project pipeline, from model co
 
 ---
 
-## 1. Qubit-Based QAE
+## 1. 🌚🌝 Qubit-Based QAE 
 
 **Path:** `Qubit-based_Model/`
 
@@ -32,7 +32,7 @@ This module implements a **qubit-based Quantum Autoencoder (QAE)** using **Penny
 
 > https://arxiv.org/abs/2502.17301
 
-### Main Features
+### ☀️ Main Features 
 
 - Loading and preprocessing of **jet events from CMS datasets**
 - Selection of leading jet constituents by **transverse momentum ($p_T$)**
@@ -54,22 +54,22 @@ This model establishes the baseline for quantum anomaly detection using qubits.
 
 ---
 
-## 2. Qutrit-Based QAE
+## 2. 🫧  Qutrit-Based QAE
 
 **Path:** `Qutrit-based_Model/`
 
 This module extends the QAE framework to **qutrit-based systems**, including both **standard SU(3) encoding** and a novel **Majorana-based encoding**.
 
-### Submodules
+### ☄️ Submodules 
 
-#### a) Before Majorana encoding
+#### a) 🤔 Before Majorana encoding 
 - First qutrit QAE inspired by the reference paper
 - Qutrit operators (SU(3), SO(3))
 - Controlled TSWAP gates
 - Fidelity-based optimization
 - ROC/AUC analysis
 
-#### b) With majorana encoding
+#### b) 🤓 With majorana encoding
 - Extended feature space including:
   - Transverse impact parameter (`d0`)
   - Longitudinal impact parameter (`dz`)
@@ -91,13 +91,13 @@ This module enables the study of **higher-dimensional quantum encodings** and th
 
 ---
 
-## 3. Scripts for data processing and conversion (CESGA)
+## 3. 🦾 Scripts for data processing and conversion (CESGA)
 
 **Path:** `Scripts_CESGA/`
 
 This section contains scripts used to **process and convert massive datasets of real and simulated CMS data** generated from quantum circuits.
 
-### Main Functions
+### 👀 Main functions
 
 - Load large volumes of raw experimental and simulated data
 - Clean and standardize dataset structures
@@ -110,13 +110,13 @@ These scripts ensure **full consistency between real and simulated datasets** be
 
 ---
 
-## 4. High-Performance model execution
+## 🚀 High-Performance model execution
 
 **Path:** `Test_models_In_HPC/`
 
 This directory contains the **final `.py` implementations of the qubit and qutrit QAEs**, prepared for large-scale execution on **Finisterrae III**.
 
-### Key Characteristics
+### ✨ Key Characteristics
 
 - Each experiment is executed **100 independent times**
 - Separate implementations for:
@@ -131,7 +131,7 @@ Due to the extremely high computational cost of repeated quantum simulations, al
 
 ---
 
-## 5. Statistical analysis & anomaly detection
+## 5. 🌱 Statistical analysis & anomaly detection
 
 **Path:** `Analysis_and_Stadistics/`
 
