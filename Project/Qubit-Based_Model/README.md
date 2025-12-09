@@ -13,7 +13,7 @@ The script loads multiple JSON files containing **jet events**, selects the top 
 
 ---
 
-## Splitting Data into Train, Validation, and Inference Sets
+## ✂️ Splitting data into train, validation, and inference sets
 
 The datasets are converted to NumPy arrays and split as follows:
 
