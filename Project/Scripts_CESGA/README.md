@@ -1,11 +1,11 @@
 
-# CESGA Scripts & HPC Model Execution
+# 🖥️ CESGA scripts & HPC model execution
 
 This repository is organized into two main parts, each corresponding to a different stage of the data processing and model evaluation pipeline used in this project.
 
 ---
 
-## 1. Data Processing and Conversion Scripts
+## 1. 🐝 Data processing and conversion scripts
 
 The first part of the repository contains the scripts used to process and convert large-scale datasets generated from **real and simulated CMS data**. 
 
@@ -25,13 +25,13 @@ These transformations are essential to ensure that both simulated and real exper
 
 ---
 
-## 2. Model Execution on HPC (Finisterrae III)
+## 2. 🚀 Model execution on HPC (Finisterrae III)
 
 The second part of the repository contains the implementations of the models exported to `.py` format for large-scale testing and benchmarking. These scripts are designed to perform **100 independent executions for each experiment**, allowing robust statistical evaluation of the results.
 
 This section is located in:
 
-Test_models_In_HPC/
+🍄 Test_models_In_HPC/
 
 
 It includes:
@@ -44,7 +44,7 @@ Due to the **high computational cost** of running 100 executions per experiment,
 
 ---
 
-## Summary
+## 🌱 Summary
 
 In short, this repository provides:
 
