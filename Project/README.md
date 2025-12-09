@@ -24,7 +24,7 @@ Each directory corresponds to a key stage of the project pipeline, from model co
 
 ---
 
-## 1. Qubit-Based Quantum Autoencoder
+## 1. Qubit-Based QAE
 
 **Path:** `Qubit-based_Model/`
 
@@ -54,7 +54,7 @@ This model establishes the baseline for quantum anomaly detection using qubits.
 
 ---
 
-## 2. Qutrit-Based Quantum Autoencoder
+## 2. Qutrit-Based QAE
 
 **Path:** `Qutrit-based_Model/`
 
@@ -62,14 +62,14 @@ This module extends the QAE framework to **qutrit-based systems**, including bot
 
 ### Submodules
 
-#### a) Before Majorana Encoding
+#### a) Before Majorana encoding
 - First qutrit QAE inspired by the reference paper
 - Qutrit operators (SU(3), SO(3))
 - Controlled TSWAP gates
 - Fidelity-based optimization
 - ROC/AUC analysis
 
-#### b) With Majorana Encoding
+#### b) With majorana encoding
 - Extended feature space including:
   - Transverse impact parameter (`d0`)
   - Longitudinal impact parameter (`dz`)
@@ -78,7 +78,7 @@ This module extends the QAE framework to **qutrit-based systems**, including bot
 - Variational training and inference
 - Robustness validation of qutrit operations
 
-#### c) Additional Tools
+#### c) Additional tools
 - `plot_dataset_values.ipynb`:
   - Jet feature correlation studies
   - Redundancy analysis
@@ -91,7 +91,7 @@ This module enables the study of **higher-dimensional quantum encodings** and th
 
 ---
 
-## 3. Scripts for Data Processing and Conversion (CESGA)
+## 3. Scripts for data processing and conversion (CESGA)
 
 **Path:** `Scripts_CESGA/`
 
@@ -110,7 +110,7 @@ These scripts ensure **full consistency between real and simulated datasets** be
 
 ---
 
-## 4. High-Performance Model Execution (HPC)
+## 4. High-Performance model execution
 
 **Path:** `Test_models_In_HPC/`
 
@@ -131,13 +131,13 @@ Due to the extremely high computational cost of repeated quantum simulations, al
 
 ---
 
-## 5. Statistical Analysis & Anomaly Detection
+## 5. Statistical analysis & anomaly detection
 
 **Path:** `Analysis_and_Stadistics/`
 
 This module performs the **final statistical evaluation and anomaly detection analysis** using the fidelity outputs generated on the HPC.
 
-### Main Tasks
+### Main tasks
 
 - Loads `.npz` files containing **100-run fidelity outputs**
 - Computes:
@@ -157,7 +157,7 @@ This module performs the **final statistical evaluation and anomaly detection an
 - ROC plotting
 - Dispersion analysis across iterations
 
-### Model Variants Analyzed
+### Model variants analyzed
 
 - Qubits trained on:
 - Simulated CMS data
@@ -176,7 +176,7 @@ This framework provides a **robust statistical comparison of quantum encodings a
 
 ---
 
-## Global Summary
+## Global summary
 
 This repository provides a **complete research pipeline for quantum anomaly detection in jet physics**, including:
 
