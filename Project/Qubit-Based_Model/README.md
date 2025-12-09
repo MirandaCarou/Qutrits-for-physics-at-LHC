@@ -1,6 +1,6 @@
 # 🌚🌝 Qubit-based quantum autoencoder (QAE)
 
-This part contains code for a **qubit-based quantum autoencoder (QAE)**, implemented using PennyLane and PyTorch. The implementation is based on the paper [https://arxiv.org/abs/2502.17301](https://arxiv.org/abs/2502.17301), and it allows analysis and comparison of quantum autoencoder performance on jet event datasets.
+This part contains code for a **qubit-based quantum autoencoder (QAE)**, implemented using PennyLane and PyTorch. The implementation is based on the paper [https://arxiv.org/abs/2502.17301](https://arxiv.org/abs/2502.17301) 📑, and it allows analysis and comparison of quantum autoencoder performance on jet event datasets.
 
 ---
 
