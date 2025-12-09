@@ -191,10 +191,6 @@ It enables **systematic benchmarking of quantum representations, feature encodin
 
 ---
 
-If needed, I can also:
-- Add an **installation section**
-- Add **environment requirements**
-- Or adapt this README for a **journal or thesis repository**.
 
 ## 📋 Prerequisites
 
