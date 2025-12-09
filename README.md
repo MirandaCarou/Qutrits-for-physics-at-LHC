@@ -30,3 +30,18 @@ The identification of anomalous events, not explained by the Standard Model of p
 [git clone https://github.com/MirandaCarou/Research-Intership-Memory.git
 cd Research-Intership-Memory](https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC.git)
 ```
+## 📖 How to Cite This Work
+
+If you use this repository, code, or related results in your research, please cite the following article:
+
+### BibTeX
+```bibtex
+@misc{laino2025qutritsphysicslhc,
+  title        = {Qutrits for physics at the LHC},
+  author       = {Miranda Carou Lai\~no and Veronika Chobanova and Miriam Lucio Mart\'inez},
+  year         = {2025},
+  eprint       = {2510.14001},
+  archivePrefix = {arXiv},
+  primaryClass = {quant-ph},
+  url          = {https://arxiv.org/abs/2510.14001}
+}
