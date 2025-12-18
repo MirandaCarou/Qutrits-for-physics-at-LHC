@@ -206,6 +206,5 @@ It enables **systematic benchmarking of quantum representations, feature encodin
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/MirandaCarou/Research-Intership-Memory.git
-cd Research-Intership-Memory
+git clone https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC.git
 ```
