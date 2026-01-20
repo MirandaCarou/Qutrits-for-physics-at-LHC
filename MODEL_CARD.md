@@ -2,6 +2,7 @@
 ## 🍁 Model Card for *"Qutrits for physics at LHC"* work 🍁
 
 The identification of anomalous events, not explained by the Standard Model of particle physics, and the possible discovery of exotic physical phenomena pose significant theoretical, experimental and computational challenges. The task will intensify at next-generation colliders, such as the High- Luminosity Large Hadron Collider (HL-LHC). Consequently, considerable challenges are expected concerning data processing, signal reconstruction, and analysis. This work explores the use of qutrit- based Quantum Machine Learning models for anomaly detection in high-energy physics data, with a focus on LHC applications. We propose the development of a qutrit quantum model and benchmark its performance against qubit-based approaches, assessing accuracy, scalability, and computational efficiency. This study aims to establish whether qutrit architectures can offer an advantage in addressing the computational and analytical demands of future collider experiments.
+
 ---
 
 ## 🚀 Model Details 
@@ -82,11 +83,11 @@ The qutrit-based Quantum Autoencoder (QAE) was trained using a differentiable qu
 
 #### 📊 Testing Data 
 
-The model is evaluated on simulated jet datasets representing both background and signal events. Validation is performed on a held-out set (X_val). Test datasets include:
-- Background jets (X_inf)
-- H → bb jets (datos_HToBB)
-- W → qq jets (datos_WToqq)
-- Top-antitop jets (datos_TTBar)
+The model is evaluated on simulated jet datasets representing both background and signal events. Validation is performed on a held-out set (`X_val`). Test datasets include:
+- Background jets (`X_inf`)
+- H → bb jets (`datos_HToBB`)
+- W → qq jets (`datos_WToqq`)
+- Top jets (`datos_TTBar`)
 
 #### 🫧 Factors 
 
@@ -181,5 +182,7 @@ The use of qutrit mixed states, using Majorana's generalised representation for 
 ## ☎️  Model Card Contact
 
 👩🏻‍⚕️ **Miranda Carou Laiño**: 📩 micalai@alumni.uv.es
+
 👩🏻‍⚕️ **Veronika Chobanova**: 📩 veronika.chobanova@cern.ch
+
 👩🏻‍⚕️ **Miriam Lucio Martínez**: 📩 miriam.lucio.martinez@cern.ch
