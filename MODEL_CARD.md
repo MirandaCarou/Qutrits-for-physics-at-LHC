@@ -1,54 +1,49 @@
----
-# For reference on model card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
-# Doc / guide: https://huggingface.co/docs/hub/model-cards
-{{ card_data }}
----
 
 # Model Card for *"Qutrits for physics at LHC"* work
 <!-- Provide a quick summary of what the model is/does. -->
-
+---
 The identification of anomalous events, not explained by the Standard Model of particle physics, and the possible discovery of exotic physical phenomena pose significant theoretical, experimental and computational challenges. The task will intensify at next-generation colliders, such as the High- Luminosity Large Hadron Collider (HL-LHC). Consequently, considerable challenges are expected concerning data processing, signal reconstruction, and analysis. This work explores the use of qutrit- based Quantum Machine Learning models for anomaly detection in high-energy physics data, with a focus on LHC applications. We propose the development of a qutrit quantum model and benchmark its performance against qubit-based approaches, assessing accuracy, scalability, and computational efficiency. This study aims to establish whether qutrit architectures can offer an advantage in addressing the computational and analytical demands of future collider experiments.
 ---
 
-## Model Details
+## Model Details 🚀
 
-### Model Description
+### Model Description 📑
 
 This model implements a Quantum Autoencoder (QAE) for jet substructure analysis in high-energy physics, using simulated and recorded CMS detector data. A qubit-based QAE is first reproduced and validated against previously published results, demonstrating comparable AUC performance. This reference implementation serves as a benchmark for evaluating alternative quantum representations and ensures consistency with established results.
 The model is then extended to a qutrit-based architecture, preserving the overall QAE structure while introducing qutrit-specific rotation gates, controlled operations, and a Majorana-based encoding scheme. The encoding incorporates physically motivated jet observables, including N-subjettiness ratios, energy, momentum, and impact parameters, selected based on their discriminative power. Due to current simulation and memory constraints, the qutrit model is evaluated in a reduced configuration with a single-qutrit latent space. Despite these limitations, the model demonstrates competitive performance and provides a viable proof of principle for qutrit-based quantum machine learning approaches, with scalability to larger systems left for future work.
 
-- **Developed by:** Miranda Carou Laiño, Veronika Chobanova, Miriam Lucio Martínez
-- **Model type:** Qutrit-based Quantum Autoencoder
-- **Language(s) (NLP):** Python. Pennylane
-- **License:** https://creativecommons.org/licenses/by/4.0/
+- 🍄 **Developed by:** Miranda Carou Laiño, Veronika Chobanova, Miriam Lucio Martínez
+- 🍄 **Model type:** Qutrit-based Quantum Autoencoder
+- 🍄 **Language(s) (NLP):** Python. Pennylane
+- 🍄 **License:** https://creativecommons.org/licenses/by/4.0/
 
-### Model Sources
+### Model Sources 🌲
 
-- **Repository:** ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/tree/main/Project/Qutrits-Based_Model
-- **Paper :**➡️ https://arxiv.org/abs/2510.14001
+- 🌱 **Repository:** ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/tree/main/Project/Qutrits-Based_Model
+- 📑 **Paper:** ➡️ https://arxiv.org/abs/2510.14001
 
 ---
 
-## Uses
+## Uses 
 
-### Direct Use
+### Direct Use 🏋🏻‍♀️
 
 
 This model can be used directly to analyze jet substructure in high-energy physics events, using input data that includes particle momenta, energy, and impact parameters. It is intended for researchers or students in quantum computing and particle physics who want to explore quantum machine learning approaches to particle-level event analysis.
 
-### Downstream Use 
+### Downstream Use 🏃🏻‍♀️
 
 The model can be fine-tuned or integrated into larger quantum or hybrid classical-quantum workflows for tasks such as jet classification, anomaly detection in HEP datasets, or benchmarking quantum encoding schemes. It may also serve as a reference for developing more complex qutrit-based quantum circuits.
 
-### Out-of-Scope Use
+### Out-of-Scope Use ✂️
 
 This model is not intended for use with data outside of particle physics, for predicting real-world phenomena unrelated to jets, or for decision-making with safety-critical consequences. It is also not designed for large-scale deployment on classical systems without appropriate quantum hardware or simulation resources.
 
-## Bias, Risks, and Limitations
+## Bias, Risks, and Limitations 🔍
 
 The model is limited by current quantum simulation capabilities, which restrict the number of qutrits that can be simulated efficiently. Results may not fully generalize to larger systems or experimental datasets without further validation. The model relies on simulated or preprocessed experimental data and does not account for all sources of detector noise or event-level variability. Potential misuse includes applying the model to datasets outside its intended scope or misinterpreting probabilistic outputs as deterministic predictions
 
-### Recommendations
+### Recommendations 📝
 
 <!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
 
@@ -56,7 +51,7 @@ The model is limited by current quantum simulation capabilities, which restrict 
 
 ---
 
-## How to Get Started with the Model
+## How to Get Started with the Model 🍾
 
 - **Check** (*Prerequisites*) ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/blob/main/README.md 
 - **Check** (*Project*) ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/blob/main/Project/README.md
@@ -66,19 +61,18 @@ The model is limited by current quantum simulation capabilities, which restrict 
 ---
 ## Training Details
 
-### Training Data
+### Training Data 🖥️
 
 The JetClass dataset and the data collected in 2016 by the CMS detector at the LHC and made public have been used separately for the optimal training of the model in different scenarios. The CMS dataset is characterised by having a format focused on Machine Learning and is dominated by Quantum Chromodynamics (QCD) jets with less than 1% contamination from other sources.
 The JetClass contains 125 million jets, divided into ten classes, which are split across training, validation, testing, and inference. During the inference phase, when the trained model applies its learned patterns to compress previously unseen data, the simulated dataset JetClass is always employed. JetClass signals originating from decays of particles such as Higgs bosons, W/Z bosons, and top quarks are analysed to evaluate the model’s performance in distinguishing signal from background jets.
 
 Furthermore, for the training phase of the QAE model, a previously sample of the data has been made such as each class has a flat distribution in PT,jet, in the range [500,1000] GeV, in order to prevent the training from being influenced by the jet scale, thus concentrating solely on jet substructure, as in Ref. 
 
-### Training Procedure
+### Training Procedure ⚙️
 
-# **Training loop for qutrit-based QAE**
 The qutrit-based Quantum Autoencoder (QAE) was trained using a differentiable quantum circuit implemented in PennyLane with the PyTorch interface. The cost function is defined as the negative fidelity of the reconstructed quantum states. The training optimizes the parameters of the variational layer and qutrit encoding unitaries via gradient-based backpropagation. Due to memory constraints, the model is trained on a reduced circuit with a single-qutrit latent space, trash, reference, and ancilla qutrits.
 
-#### Training Hyperparameters
+#### Training Hyperparameters 🐜
 
 - **Training regime**: `torch.float32` (32-bit floating point), gradient-based optimization using backpropagation.
 - **Optimizer**: Adam
@@ -89,12 +83,11 @@ The qutrit-based Quantum Autoencoder (QAE) was trained using a differentiable qu
 - **Batching and epochs**: Configurable depending on dataset size and memory constraints.
 
 
-## Evaluation
-
+## Evaluation 📈
 
 ### Testing Data, Factors & Metrics
 
-#### Testing Data
+#### Testing Data 📊
 
 The model is evaluated on simulated jet datasets representing both background and signal events. Validation is performed on a held-out set (X_val). Test datasets include:
 - Background jets (X_inf)
@@ -102,16 +95,17 @@ The model is evaluated on simulated jet datasets representing both background an
 - W → qq jets (datos_WToqq)
 - Top-antitop jets (datos_TTBar)
 
-#### Factors
+#### Factors 🫧
 
 Performance is disaggregated by the type of jet: background, H → bb, W → qq, and top-antitop (TTBar). Additional factors include the number of constituent particles per jet, with jets containing fewer than the required number of particles excluded from evaluation.
 
-#### Metrics
+#### Metrics 🫧
 
 The primary evaluation metric is the fidelity of the reconstructed quantum states, computed per jet from the ancilla measurement in the QAE circuit. Additionally, the area under the ROC curve (AUC) is used to quantify discriminative performance between signal and background events.
 
+---
 
-### Results
+### Results ✨
 
 Check for more details ➡️ https://arxiv.org/abs/2510.14001
 
@@ -162,73 +156,37 @@ In the context of anomaly detection, the AUC score establishes a fidelity thresh
 
 As shown in Fig. 1 and Tables 2–3, the $t \rightarrow b q \bar{q}$ decay is identified as the most anomalous signal by all models, consistent with the expected jet topology: at LHC energies, electroweak-scale resonances such as top quarks, $W/Z$ bosons, and the Higgs boson are frequently produced in a boosted regime. Their decay products are collimated into a single large-radius jet. While QCD jets typically exhibit a single-prong core with diffuse soft radiation, boosted $W/Z$ and Higgs bosons yield a two-prong structure, and top quarks produce a three-prong configuration. The richer substructure and higher particle multiplicity in top-initiated jets create larger deviations from the QCD-like background, which the QAE detects as more anomalous events. Including the ratios $\tau_{12}$, $\tau_{23}$, and $\tau_{34}$ with jet energy enhances discrimination for $t \rightarrow b q \bar{q}$ events, leading models B, C, and D to achieve higher AUC values than model A.
 
+---
 
-#### Summary
+#### Summary  🔖
 
-{{ results_summary | default("", true) }}
+A qutrit-based model for anomaly detection in CMS experiment data has been developed, and Majorana encoding for qutrit representation on unit spheres has been proven to be an effective way to represent the information on a unitary sphere for qutrit systems. Generalized gates have been added according to the new ternary paradigm, such as rotation gates and SWAP gates, which have been shown to give robust results. Despite the limitations encountered in PennyLane's ability to simulate qutrit circuits, in terms of memory consumption, similar performance equivalent to the qubit-based model - or in some cases even higher - has been achieved, and our model has stood out for its greater ability to discern between signals. As for future research, further tests should be carried out using data from other LHC experiments, such as ATLAS and LHCb, to evaluate how the new encoding and model behave with different datasets and BSM scenarios. In addition, different encodings and libraries must be studied and tested to find the most suitable combination for LHC data developments using qutrits. 
 
-## Model Examination [optional]
+As for hardware implementation of qudit systems, recent studies, where a quantum algorithm was successfully implemented with a trapped ion qudit, obtaining competitive results, make the hardware implementation of qudit-based models seem like a certainty in the intermediate future. Additionally, the break-even point for Quantum Error Correction of qudit quantum memories, at which the lifetime of a qudit exceeds the lifetime of the constituents of the system, has been beaten in Ref.~\cite{evenBreak}, enhancing the usability conception of qudits in the long run and making studies like this one only the beginning of further developments.
 
-<!-- Relevant interpretability work for the model goes here -->
+The use of qutrit mixed states, using Majorana's generalised representation for mixed states, as well as higher-level systems such as ququarts, which can potentially provide greater expressiveness and thus improve the performance of our model for anomaly detection, is left for future work. It should be noted that these performance improvements come at an increased computational cost and not-straightforward implementation within the available simulators.
 
-{{ model_examination | default("[More Information Needed]", true)}}
+---
 
-## Environmental Impact
+## Citation 📌
 
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
+### BibTeX
+```bibtex
+@misc{laino2025qutritsphysicslhc,
+  title        = {Qutrits for physics at the LHC},
+  author       = {Miranda Carou Lai\~no and Veronika Chobanova and Miriam Lucio Mart\'inez},
+  year         = {2025},
+  eprint       = {2510.14001},
+  archivePrefix = {arXiv},
+  primaryClass = {quant-ph},
+  url          = {https://arxiv.org/abs/2510.14001}
+}
+```
 
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
+---
 
-- **Hardware Type:** {{ hardware_type | default("[More Information Needed]", true)}}
-- **Hours used:** {{ hours_used | default("[More Information Needed]", true)}}
-- **Cloud Provider:** {{ cloud_provider | default("[More Information Needed]", true)}}
-- **Compute Region:** {{ cloud_region | default("[More Information Needed]", true)}}
-- **Carbon Emitted:** {{ co2_emitted | default("[More Information Needed]", true)}}
+## Model Card Contact ☎️
 
-## Technical Specifications [optional]
-
-### Model Architecture and Objective
-
-{{ model_specs | default("[More Information Needed]", true)}}
-
-### Compute Infrastructure
-
-{{ compute_infrastructure | default("[More Information Needed]", true)}}
-
-#### Hardware
-
-{{ hardware_requirements | default("[More Information Needed]", true)}}
-
-#### Software
-
-{{ software | default("[More Information Needed]", true)}}
-
-## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
-
-**BibTeX:**
-
-{{ citation_bibtex | default("[More Information Needed]", true)}}
-
-**APA:**
-
-{{ citation_apa | default("[More Information Needed]", true)}}
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-{{ glossary | default("[More Information Needed]", true)}}
-
-## More Information [optional]
-
-{{ more_information | default("[More Information Needed]", true)}}
-
-## Model Card Authors [optional]
-
-{{ model_card_authors | default("[More Information Needed]", true)}}
-
-## Model Card Contact
-
-{{ model_card_contact | default("[More Information Needed]", true)}}
+Miranda Carou Laiño: 📩 micalai@alumni.uv.es
+Veronika Chobanova: 📩 veronika.chobanova@cern.ch
+Miriam Lucio Martínez: 📩 miriam.lucio.martinez@cern.ch
