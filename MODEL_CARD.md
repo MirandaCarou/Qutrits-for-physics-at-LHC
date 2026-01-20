@@ -1,0 +1,203 @@
+---
+# For reference on model card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
+# Doc / guide: https://huggingface.co/docs/hub/model-cards
+{{ card_data }}
+---
+
+# Model Card for *"Qutrits for physics at LHC"* work
+<!-- Provide a quick summary of what the model is/does. -->
+
+The identification of anomalous events, not explained by the Standard Model of particle physics, and the possible discovery of exotic physical phenomena pose significant theoretical, experimental and computational challenges. The task will intensify at next-generation colliders, such as the High- Luminosity Large Hadron Collider (HL-LHC). Consequently, considerable challenges are expected concerning data processing, signal reconstruction, and analysis. This work explores the use of qutrit- based Quantum Machine Learning models for anomaly detection in high-energy physics data, with a focus on LHC applications. We propose the development of a qutrit quantum model and benchmark its performance against qubit-based approaches, assessing accuracy, scalability, and computational efficiency. This study aims to establish whether qutrit architectures can offer an advantage in addressing the computational and analytical demands of future collider experiments.
+
+
+## Model Details
+
+### Model Description
+
+This model implements a Quantum Autoencoder (QAE) for jet substructure analysis in high-energy physics, using simulated and recorded CMS detector data. A qubit-based QAE is first reproduced and validated against previously published results, demonstrating comparable AUC performance. This reference implementation serves as a benchmark for evaluating alternative quantum representations and ensures consistency with established results.
+The model is then extended to a qutrit-based architecture, preserving the overall QAE structure while introducing qutrit-specific rotation gates, controlled operations, and a Majorana-based encoding scheme. The encoding incorporates physically motivated jet observables, including N-subjettiness ratios, energy, momentum, and impact parameters, selected based on their discriminative power. Due to current simulation and memory constraints, the qutrit model is evaluated in a reduced configuration with a single-qutrit latent space. Despite these limitations, the model demonstrates competitive performance and provides a viable proof of principle for qutrit-based quantum machine learning approaches, with scalability to larger systems left for future work.
+
+- **Developed by:** Miranda Carou Laiño, Veronika Chobanova, Miriam Lucio Martínez
+- **Model type:** Qutrit-based Quantum Autoencoder
+- **Language(s) (NLP):** Python. Pennylane
+- **License:** https://creativecommons.org/licenses/by/4.0/
+
+### Model Sources
+
+- **Repository:** ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/tree/main/Project/Qutrits-Based_Model
+- **Paper :**➡️ https://arxiv.org/abs/2510.14001
+
+## Uses
+
+### Direct Use
+
+
+This model can be used directly to analyze jet substructure in high-energy physics events, using input data that includes particle momenta, energy, and impact parameters. It is intended for researchers or students in quantum computing and particle physics who want to explore quantum machine learning approaches to particle-level event analysis.
+
+### Downstream Use 
+
+The model can be fine-tuned or integrated into larger quantum or hybrid classical-quantum workflows for tasks such as jet classification, anomaly detection in HEP datasets, or benchmarking quantum encoding schemes. It may also serve as a reference for developing more complex qutrit-based quantum circuits.
+
+### Out-of-Scope Use
+
+This model is not intended for use with data outside of particle physics, for predicting real-world phenomena unrelated to jets, or for decision-making with safety-critical consequences. It is also not designed for large-scale deployment on classical systems without appropriate quantum hardware or simulation resources.
+
+## Bias, Risks, and Limitations
+
+The model is limited by current quantum simulation capabilities, which restrict the number of qutrits that can be simulated efficiently. Results may not fully generalize to larger systems or experimental datasets without further validation. The model relies on simulated or preprocessed experimental data and does not account for all sources of detector noise or event-level variability. Potential misuse includes applying the model to datasets outside its intended scope or misinterpreting probabilistic outputs as deterministic predictions
+
+### Recommendations
+
+<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
+
+{{ bias_recommendations | default("Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.", true)}}
+
+## How to Get Started with the Model
+
+- **Check** (*Prerequisites*) ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/blob/main/README.md 
+- **Check** (*Project*) ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/blob/main/Project/README.md
+- **Read** (*Model*) ➡️ https://arxiv.org/abs/2510.14001
+- **Read** (*Reference Model*) ➡️  https://journals.aps.org/prd/abstract/10.1103/l8y2-87vq
+
+## Training Details
+
+### Training Data
+
+The JetClass dataset and the data collected in 2016
+by the CMS detector at the LHC and made public 
+have been used separately for the optimal training of the
+model in different scenarios. The CMS dataset is charac-
+terised by having a format focused on Machine Learning
+and is dominated by Quantum Chromodynamics (QCD)
+jets with less than 1% contamination from other sources.
+The JetClass contains 125 million jets, divided into ten
+classes, which are split across training, validation, test-
+ing, and inference. During the inference phase, when the
+trained model applies its learned patterns to compress pre-
+viously unseen data, the simulated dataset JetClass is
+always employed. JetClass signals originating from decays
+of particles such as Higgs bosons, W/Z bosons, and top
+quarks are analysed to evaluate the model’s performance
+in distinguishing signal from background jets.
+
+
+Furthermore, for the training phase of the QAE model,
+a previously sample of the data has been made such as
+each class has a flat distribution in PT,jet, in the range
+[500,1000] GeV, in order to prevent the training from
+being influenced by the jet scale, thus concentrating solely
+on jet substructure, as in Ref. 
+
+### Training Procedure
+
+# **Training loop for qutrit-based QAE**
+The qutrit-based Quantum Autoencoder (QAE) was trained using a differentiable quantum circuit implemented in PennyLane with the PyTorch interface. The cost function is defined as the negative fidelity of the reconstructed quantum states. The training optimizes the parameters of the variational layer and qutrit encoding unitaries via gradient-based backpropagation. Due to memory constraints, the model is trained on a reduced circuit with a single-qutrit latent space, trash, reference, and ancilla qutrits.
+
+#### Training Hyperparameters
+
+- **Training regime**: `torch.float32` (32-bit floating point), gradient-based optimization using backpropagation.
+- **Optimizer**: Adam
+- **Loss function**: Negative fidelity of the ancilla qutrit measurement.
+- **Circuit configuration**: Single-qutrit latent space, three trash qutrits, three reference qutrits, one ancilla qutrit.
+- **Input features**: Jet constituent kinematics including `η`, `φ`, `mass`, `energy`, `d0`, `dz`.
+- **Number of layers**: Configurable variational layers; each layer includes `TAdd` gates and single-qutrit rotations (`RX`, `RY`, `RZ`).
+- **Batching and epochs**: Configurable depending on dataset size and memory constraints.
+
+
+## Evaluation
+
+<!-- This section describes the evaluation protocols and provides the results. -->
+
+### Testing Data, Factors & Metrics
+
+#### Testing Data
+
+<!-- This should link to a Dataset Card if possible. -->
+
+{{ testing_data | default("[More Information Needed]", true)}}
+
+#### Factors
+
+<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
+
+{{ testing_factors | default("[More Information Needed]", true)}}
+
+#### Metrics
+
+<!-- These are the evaluation metrics being used, ideally with a description of why. -->
+
+{{ testing_metrics | default("[More Information Needed]", true)}}
+
+### Results
+
+{{ results | default("[More Information Needed]", true)}}
+
+#### Summary
+
+{{ results_summary | default("", true) }}
+
+## Model Examination [optional]
+
+<!-- Relevant interpretability work for the model goes here -->
+
+{{ model_examination | default("[More Information Needed]", true)}}
+
+## Environmental Impact
+
+<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
+
+Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
+
+- **Hardware Type:** {{ hardware_type | default("[More Information Needed]", true)}}
+- **Hours used:** {{ hours_used | default("[More Information Needed]", true)}}
+- **Cloud Provider:** {{ cloud_provider | default("[More Information Needed]", true)}}
+- **Compute Region:** {{ cloud_region | default("[More Information Needed]", true)}}
+- **Carbon Emitted:** {{ co2_emitted | default("[More Information Needed]", true)}}
+
+## Technical Specifications [optional]
+
+### Model Architecture and Objective
+
+{{ model_specs | default("[More Information Needed]", true)}}
+
+### Compute Infrastructure
+
+{{ compute_infrastructure | default("[More Information Needed]", true)}}
+
+#### Hardware
+
+{{ hardware_requirements | default("[More Information Needed]", true)}}
+
+#### Software
+
+{{ software | default("[More Information Needed]", true)}}
+
+## Citation [optional]
+
+<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
+
+**BibTeX:**
+
+{{ citation_bibtex | default("[More Information Needed]", true)}}
+
+**APA:**
+
+{{ citation_apa | default("[More Information Needed]", true)}}
+
+## Glossary [optional]
+
+<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
+
+{{ glossary | default("[More Information Needed]", true)}}
+
+## More Information [optional]
+
+{{ more_information | default("[More Information Needed]", true)}}
+
+## Model Card Authors [optional]
+
+{{ model_card_authors | default("[More Information Needed]", true)}}
+
+## Model Card Contact
+
+{{ model_card_contact | default("[More Information Needed]", true)}}
