@@ -8,7 +8,7 @@
 <!-- Provide a quick summary of what the model is/does. -->
 
 The identification of anomalous events, not explained by the Standard Model of particle physics, and the possible discovery of exotic physical phenomena pose significant theoretical, experimental and computational challenges. The task will intensify at next-generation colliders, such as the High- Luminosity Large Hadron Collider (HL-LHC). Consequently, considerable challenges are expected concerning data processing, signal reconstruction, and analysis. This work explores the use of qutrit- based Quantum Machine Learning models for anomaly detection in high-energy physics data, with a focus on LHC applications. We propose the development of a qutrit quantum model and benchmark its performance against qubit-based approaches, assessing accuracy, scalability, and computational efficiency. This study aims to establish whether qutrit architectures can offer an advantage in addressing the computational and analytical demands of future collider experiments.
-
+---
 
 ## Model Details
 
@@ -26,6 +26,8 @@ The model is then extended to a qutrit-based architecture, preserving the overal
 
 - **Repository:** ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/tree/main/Project/Qutrits-Based_Model
 - **Paper :**➡️ https://arxiv.org/abs/2510.14001
+
+---
 
 ## Uses
 
@@ -52,6 +54,8 @@ The model is limited by current quantum simulation capabilities, which restrict 
 
 {{ bias_recommendations | default("Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.", true)}}
 
+---
+
 ## How to Get Started with the Model
 
 - **Check** (*Prerequisites*) ➡️ https://github.com/MirandaCarou/Qutrits-for-physics-at-LHC/blob/main/README.md 
@@ -59,34 +63,15 @@ The model is limited by current quantum simulation capabilities, which restrict 
 - **Read** (*Model*) ➡️ https://arxiv.org/abs/2510.14001
 - **Read** (*Reference Model*) ➡️  https://journals.aps.org/prd/abstract/10.1103/l8y2-87vq
 
+---
 ## Training Details
 
 ### Training Data
 
-The JetClass dataset and the data collected in 2016
-by the CMS detector at the LHC and made public 
-have been used separately for the optimal training of the
-model in different scenarios. The CMS dataset is charac-
-terised by having a format focused on Machine Learning
-and is dominated by Quantum Chromodynamics (QCD)
-jets with less than 1% contamination from other sources.
-The JetClass contains 125 million jets, divided into ten
-classes, which are split across training, validation, test-
-ing, and inference. During the inference phase, when the
-trained model applies its learned patterns to compress pre-
-viously unseen data, the simulated dataset JetClass is
-always employed. JetClass signals originating from decays
-of particles such as Higgs bosons, W/Z bosons, and top
-quarks are analysed to evaluate the model’s performance
-in distinguishing signal from background jets.
+The JetClass dataset and the data collected in 2016 by the CMS detector at the LHC and made public have been used separately for the optimal training of the model in different scenarios. The CMS dataset is characterised by having a format focused on Machine Learning and is dominated by Quantum Chromodynamics (QCD) jets with less than 1% contamination from other sources.
+The JetClass contains 125 million jets, divided into ten classes, which are split across training, validation, testing, and inference. During the inference phase, when the trained model applies its learned patterns to compress previously unseen data, the simulated dataset JetClass is always employed. JetClass signals originating from decays of particles such as Higgs bosons, W/Z bosons, and top quarks are analysed to evaluate the model’s performance in distinguishing signal from background jets.
 
-
-Furthermore, for the training phase of the QAE model,
-a previously sample of the data has been made such as
-each class has a flat distribution in PT,jet, in the range
-[500,1000] GeV, in order to prevent the training from
-being influenced by the jet scale, thus concentrating solely
-on jet substructure, as in Ref. 
+Furthermore, for the training phase of the QAE model, a previously sample of the data has been made such as each class has a flat distribution in PT,jet, in the range [500,1000] GeV, in order to prevent the training from being influenced by the jet scale, thus concentrating solely on jet substructure, as in Ref. 
 
 ### Training Procedure
 
@@ -106,31 +91,77 @@ The qutrit-based Quantum Autoencoder (QAE) was trained using a differentiable qu
 
 ## Evaluation
 
-<!-- This section describes the evaluation protocols and provides the results. -->
 
 ### Testing Data, Factors & Metrics
 
 #### Testing Data
 
-<!-- This should link to a Dataset Card if possible. -->
-
-{{ testing_data | default("[More Information Needed]", true)}}
+The model is evaluated on simulated jet datasets representing both background and signal events. Validation is performed on a held-out set (X_val). Test datasets include:
+- Background jets (X_inf)
+- H → bb jets (datos_HToBB)
+- W → qq jets (datos_WToqq)
+- Top-antitop jets (datos_TTBar)
 
 #### Factors
 
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
-
-{{ testing_factors | default("[More Information Needed]", true)}}
+Performance is disaggregated by the type of jet: background, H → bb, W → qq, and top-antitop (TTBar). Additional factors include the number of constituent particles per jet, with jets containing fewer than the required number of particles excluded from evaluation.
 
 #### Metrics
 
-<!-- These are the evaluation metrics being used, ideally with a description of why. -->
+The primary evaluation metric is the fidelity of the reconstructed quantum states, computed per jet from the ancilla measurement in the QAE circuit. Additionally, the area under the ROC curve (AUC) is used to quantify discriminative performance between signal and background events.
 
-{{ testing_metrics | default("[More Information Needed]", true)}}
 
 ### Results
 
-{{ results | default("[More Information Needed]", true)}}
+Check for more details ➡️ https://arxiv.org/abs/2510.14001
+
+The results obtained with qutrits are achieved in a three-step process: first, depending on the case, training is performed using 10,000 events taken from CMS proton-proton collision data or simulated CMS data; this training is validated in a second step using 2,500 different events from the same training dataset; finally, the signal type is inferred for 10,000 events of each type, obtained from simulated samples together with a test with 10,000 new events from the training dataset to make a comparative analysis.
+
+The resulting quantum fidelity distributions are shown in Fig. 1. They enable analysis of the model's ability to compress input data into a latent space. For high fidelity ranges, the qutrit-based model not only has a higher concentration of values close to 97–100%, but it also shows a clearer distinction between the relevant physical signals ($W \rightarrow q\bar{q}$, $H \rightarrow b\bar{b}$ and $t \rightarrow bq\bar{q}$), thus showing the higher expressivity of qutrit systems. The distinction capability was quantified using the Jensen–Shannon (JS) distance as a metric, and the qutrit-based model ultimately exhibited larger distances between the signals, as expected and as illustrated in Table 1.
+
+| Model          | Fid. Distributions | $\sqrt{\textrm{JS}}$ |
+|----------------|-----------------|-------------------|
+| Qubits R       | (H – W)         | 1.43 × 10⁻²       |
+|                | (H – t)         | 1.28 × 10⁻²       |
+|                | (W – t)         | 1.35 × 10⁻²       |
+| Qutrits R      | (H – W)         | 5.06 × 10⁻²       |
+|                | (H – t)         | 9.03 × 10⁻²       |
+|                | (W – t)         | 1.02 × 10⁻¹       |
+| Qubits S       | (H – W)         | 1.43 × 10⁻²       |
+|                | (H – t)         | 1.28 × 10⁻²       |
+|                | (W – t)         | 1.39 × 10⁻²       |
+| Qutrits (A) S  | (H – W)         | 5.05 × 10⁻²       |
+|                | (H – t)         | 9.03 × 10⁻²       |
+|                | (W – t)         | 4.87 × 10⁻¹       |
+| Qutrits (B) S  | (H – W)         | 5.23 × 10⁻²       |
+|                | (H – t)         | 7.88 × 10⁻²       |
+|                | (W – t)         | 9.59 × 10⁻²       |
+| Qutrits (C) S  | (H – W)         | 5.03 × 10⁻²       |
+|                | (H – t)         | 8.59 × 10⁻²       |
+|                | (W – t)         | 9.50 × 10⁻²       |
+| Qutrits (D) S  | (H – W)         | 4.71 × 10⁻²       |
+|                | (H – t)         | 8.81 × 10⁻²       |
+|                | (W – t)         | 9.15 × 10⁻²       |
+
+Moreover, the average AUC scores over 100 executions obtained by each model are shown in Tables 2 and 3. Table 2 corresponds to models trained on CMS data, and Table 3 to models trained on simulated CMS Monte Carlo data. The AUC metric is used to analyse the model's capability to detect anomalies, where a higher score indicates better discrimination between signal and background events. 
+
+| Model        | $W \rightarrow q\bar{q}$ | $H \rightarrow b\bar{b}$ | $t \rightarrow bq\bar{q}$ |
+|--------------|-------------------------|--------------------------|---------------------------|
+| QAE Qubits   | 0.622                   | 0.669                    | 0.776                     |
+| QAE Qutrits  | 0.671                   | 0.714                    | 0.793                     |
+
+| Model         | $W \rightarrow q\bar{q}$ | $H \rightarrow b\bar{b}$ | $t \rightarrow bq\bar{q}$ |
+|---------------|-------------------------|--------------------------|---------------------------|
+| QAE Qubits    | 0.733                   | 0.775                    | 0.846                     |
+| QAE Qutrits A | 0.688                   | 0.731                    | 0.811                     |
+| QAE Qutrits B | 0.722                   | 0.762                    | 0.833                     |
+| QAE Qutrits C | 0.723                   | 0.763                    | 0.833                     |
+| QAE Qutrits D | 0.723                   | 0.763                    | 0.833                     |
+
+In the context of anomaly detection, the AUC score establishes a fidelity threshold that allows background events to be distinguished from signal events. High AUC scores reflect more subtle detection of patterns in the input data, allowing greater separation between physics signals and the dominant QCD background. The qutrit-based QAE shows higher performance compared to qubit-based models when the $\tau$-ratios and jet energy are included, or when longitudinal and transverse impact parameters are used for models trained on real CMS data.
+
+As shown in Fig. 1 and Tables 2–3, the $t \rightarrow b q \bar{q}$ decay is identified as the most anomalous signal by all models, consistent with the expected jet topology: at LHC energies, electroweak-scale resonances such as top quarks, $W/Z$ bosons, and the Higgs boson are frequently produced in a boosted regime. Their decay products are collimated into a single large-radius jet. While QCD jets typically exhibit a single-prong core with diffuse soft radiation, boosted $W/Z$ and Higgs bosons yield a two-prong structure, and top quarks produce a three-prong configuration. The richer substructure and higher particle multiplicity in top-initiated jets create larger deviations from the QCD-like background, which the QAE detects as more anomalous events. Including the ratios $\tau_{12}$, $\tau_{23}$, and $\tau_{34}$ with jet energy enhances discrimination for $t \rightarrow b q \bar{q}$ events, leading models B, C, and D to achieve higher AUC values than model A.
+
 
 #### Summary
 
