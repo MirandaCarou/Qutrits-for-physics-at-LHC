@@ -1,17 +1,17 @@
 
-# 🖥️ CESGA scripts & HPC model execution
+# CESGA sscripts & HPC model execution
 
-This repository is organized into two main parts, each corresponding to a different stage of the data processing and model evaluation pipeline used in this project.
+This repository is organised into two main parts, each corresponding to a different stage of the data processing and model evaluation pipeline used in this project.
 
 ---
 
-## 1. 🐝 Data processing and conversion scripts
+## 1. Data processing and conversion scripts
 
 The first part of the repository contains the scripts used to process and convert large-scale datasets generated from **real and simulated CMS data**. 
 
-The scripts located in:
+The scripts are located in:
 
-Scripts_CESGA/Script_to_convert_data/
+ConvertData/
 
 
 are responsible for:
@@ -25,13 +25,13 @@ These transformations are essential to ensure that both simulated and real exper
 
 ---
 
-## 2. 🚀 Model execution on HPC (Finisterrae III)
+## 2. Model execution on HPC (Finisterrae III)
 
 The second part of the repository contains the implementations of the models exported to `.py` format for large-scale testing and benchmarking. These scripts are designed to perform **100 independent executions for each experiment**, allowing robust statistical evaluation of the results.
 
 This section is located in:
 
-🍄 Test_models_In_HPC/
+Test/
 
 
 It includes:
@@ -43,14 +43,5 @@ It includes:
 Due to the **high computational cost** of running 100 executions per experiment, all large-scale experiments were performed on **Finisterrae III**, the supercomputer of **CESGA (Centro de Supercomputación de Galicia)**.
 
 ---
-
-## 🌱 Summary
-
-In short, this repository provides:
-
-- ✅ Data preprocessing and conversion tools for massive real and simulated datasets.
-- ✅ High-performance computing scripts to execute the quantum machine learning model
-- ✅ Infrastructure to compute reliable metrics through large numbers of repeated experiments.
-- ✅ Full integration with CESGA’s Finisterrae III supercomputing facilities.
 
 
