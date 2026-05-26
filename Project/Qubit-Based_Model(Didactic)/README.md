@@ -1,10 +1,10 @@
-# 🌚🌝 Qubit-based quantum autoencoder (QAE)
+# Qubit-based quantum autoencoder (QAE)
 
-This part contains code for a **qubit-based quantum autoencoder (QAE)**, implemented using PennyLane and PyTorch. The implementation is based on the paper [https://arxiv.org/abs/2502.17301](https://arxiv.org/abs/2502.17301) 📑, and it allows analysis and comparison of quantum autoencoder performance on jet event datasets.
+(Didactic purpose) This part contains code for a **qubit-based quantum autoencoder (QAE)**, implemented using PennyLane and PyTorch. The implementation is based on the paper [https://arxiv.org/abs/2502.17301](https://arxiv.org/abs/2502.17301) , and it allows analysis and comparison of quantum autoencoder performance on jet event datasets.
 
 ---
 
-## ☄️ Data loading and processing
+## Data loading and processing
 
 The script loads multiple JSON files containing **jet events**, selects the top constituents by **transverse momentum ($p_T$)** for each jet, and computes their kinematic variables (**$p_T$, $\eta$, $\phi$**) for further analysis.
 
@@ -13,7 +13,7 @@ The script loads multiple JSON files containing **jet events**, selects the top 
 
 ---
 
-## ✂️ Splitting data into train, validation, and inference sets
+## Splitting data into train, validation, and inference sets
 
 The datasets are converted to NumPy arrays and split as follows:
 
@@ -25,7 +25,7 @@ The splits are randomized to ensure diverse sampling.
 
 ---
 
-## 🌻 Quantum circuit setup and encoder definition
+## Quantum circuit setup and encoder definition
 
 This section sets up a **qubit-based quantum autoencoder**:
 
@@ -36,7 +36,7 @@ This section sets up a **qubit-based quantum autoencoder**:
 
 ---
 
-## 🏋🏻‍♀️ Quantum autoencoder training loop
+## Quantum autoencoder training loop
 
 The script initializes trainable parameters and sets up an **Adam optimizer**. During training:
 
@@ -48,7 +48,7 @@ Additionally, fidelity distributions can be plotted for monitoring.
 
 ---
 
-## 🔍 Evaluating fidelity on different jet samples (Inference)
+## Evaluating fidelity on different jet samples (Inference)
 
 The trained QAE is evaluated on:
 
@@ -59,7 +59,7 @@ For each jet, the **fidelity** is computed and stored with labels for later ROC/
 
 ---
 
-## 🎡 ROC curve and AUC evaluation
+## ROC curve and AUC evaluation
 
 The code calculates **anomaly scores** as `1 - fidelity` and evaluates **ROC AUC**:
 
@@ -69,7 +69,7 @@ The code calculates **anomaly scores** as `1 - fidelity` and evaluates **ROC AUC
 
 ---
 
-## 🐜 Reduced QAE circuit
+## Reduced QAE circuit
 
 A smaller QAE is implemented with:
 
