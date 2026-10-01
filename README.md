@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Python 3.9.6+](https://img.shields.io/badge/python-3.9.6%2B-blue.svg)
 [![Static Badge](https://img.shields.io/badge/ArXiv-2510.14001-red)](https://arxiv.org/abs/2510.14001)
+[![Architecture diagram](https://gitdiagram.com/diagram-badge.svg)](https://gitdiagram.com/mirandacarou/qutrits-for-physics-at-lhc?utm_source=readme&utm_medium=badge)
 
 
 
