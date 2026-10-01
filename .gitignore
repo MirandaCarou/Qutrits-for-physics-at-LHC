@@ -1,4 +1,6 @@
 **/python_env
 ./Analisys_and_Stadistics/plotting3.ipynb
 
-./Analisys_and_Stadistics/npz lt2/*
+./Analisys_and_Stadistics/npz lt2/*Project/HPC_Testing_Scripts/Scripts_to_convert_data/json/*.json
+Project/HPC_Testing_Scripts/Scripts_to_convert_data/json/*.json
+.DS_Store
