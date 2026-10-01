@@ -318,10 +318,12 @@ def qae_circuit_qutrit(jets, w, theta_i, phi_i, w_i, num_layers):
     variational_layer_qutrit(theta_i, phi_i, w_i, num_layers)
     tswap = TSWAP_matrix()
 
+    qml.THadamard(wires=ancilla, subspace=None)
+
     for trash_wire, ref_wire in zip(trash_wires, ref_wires):
-        qml.THadamard(wires=ancilla, subspace=None) #With none they apply the generalized version
         qml.ControlledQutritUnitary(tswap, control_wires=ancilla, wires=[trash_wire, ref_wire])
-        qml.THadamard(wires=ancilla, subspace=None)
+    
+    qml.THadamard(wires=ancilla, subspace=None)
     
     return qml.probs(wires=ancilla)
 
